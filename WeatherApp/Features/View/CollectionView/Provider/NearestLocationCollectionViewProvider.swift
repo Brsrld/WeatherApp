@@ -1,5 +1,5 @@
 //
-//  MainMenuCollectionViewProvider.swift
+//  NearestLocationCollectionViewProvider.swift
 //  WeatherApp
 //
 //  Created by Baris Saraldi on 26.06.2021.
@@ -10,21 +10,19 @@ import UIKit
 
 //MARK: Protocols
 
-protocol MainMenuCollectionViewProtocol {
+protocol NearestLocationCollectionViewProtocol {
     func update (items: [Location])
 }
 
-protocol MainMenuCollectionViewOutputProtocol: AnyObject {
-    func getNavCont() -> UINavigationController?
-}
+protocol NearestLocationCollectionViewOutputProtocol: AnyObject {}
 
 //MARK: CollectionView Functions
 
-final class MainMenuCollectionView: NSObject{
+final class NearestLocationCollectionView: NSObject{
     
     private lazy var items: [Location] = []
     
-    weak var delegate: MainMenuCollectionViewOutputProtocol?
+    weak var delegate: NearestLocationCollectionViewOutputProtocol?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -34,14 +32,14 @@ final class MainMenuCollectionView: NSObject{
         var cell = UICollectionViewCell()
         
         if let dataCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.mainMenuCollectionViewCellID, for: indexPath) as? MainMenuCollectionViewCell {
-            dataCell.configure(title: items[indexPath.row].title, distance: items[indexPath.row].distance)
+            dataCell.configure(title: items[indexPath.row].title, distance: items[indexPath.row].distance, type: items[indexPath.row].location_type)
             cell = dataCell
         }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 60
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -53,17 +51,17 @@ final class MainMenuCollectionView: NSObject{
         let adjustedWidth = collectionViewWidth - spaceBetweenCells - sectionInsets
         let width: CGFloat = floor(adjustedWidth / columns)
         let height: CGFloat = width / 2
-        return CGSize(width: width, height: height)
+        return CGSize(width: height , height: width / 2.5)
     }
 }
 
 //MARK:  - UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 
-extension MainMenuCollectionView: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {}
+extension NearestLocationCollectionView: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {}
 
 //MARK:  - MainMenuCollectionViewProtocol
 
-extension MainMenuCollectionView: MainMenuCollectionViewProtocol {
+extension NearestLocationCollectionView: NearestLocationCollectionViewProtocol {
     
     func update (items: [Location]) {
         self.items = items

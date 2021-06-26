@@ -1,5 +1,5 @@
 //
-//  MainMenuCollectionViewCell.swift
+//  NearestCitysCollectionViewCell.swift
 //  WeatherApp
 //
 //  Created by Baris Saraldi on 26.06.2021.
@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class MainMenuCollectionViewCell: UICollectionViewCell {
+class NearestCitysCollectionViewCell: UICollectionViewCell {
     
     // MARK: View Properties
     

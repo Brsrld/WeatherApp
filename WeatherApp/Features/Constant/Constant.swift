@@ -12,4 +12,5 @@ import Foundation
 struct Constants {
     static let locaionURL = "https://www.metaweather.com/api/location/search/?lattlong="
     static let mainMenuCollectionViewCellID = "MainMenuCollectionViewCell"
+    static let nearestCitysCollectionViewCellID = "NearestCitysCollectionViewCell"
 }
