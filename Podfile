@@ -9,5 +9,6 @@ target 'WeatherApp' do
 
   pod 'Alamofire'
   pod 'Kingfisher', '~> 6.0'
+  pod 'Charts'
 
 end

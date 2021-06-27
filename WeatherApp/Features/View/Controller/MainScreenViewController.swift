@@ -9,11 +9,15 @@ import UIKit
 import CoreLocation
 
 class MainScreenViewController: UIViewController {
-
+    
+    //MARK: Variables
+    
     private let locationManager = CLLocationManager()
     private var urlLocation: String?
+    private var allCitys: [Location] = []
+    private var allLocations: [Location] = []
     
-    private let service: ServiceProtocol = Service()
+    private var mainMenuViewModel: MainMenuViewModelProtocol = MainMenuViewModel()
     private let nearestLocationCollectionView: NearestLocationCollectionView = NearestLocationCollectionView()
     private let nearestCityCollectionView: NearestCityCollectionView = NearestCityCollectionView()
     
@@ -44,7 +48,7 @@ class MainScreenViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.text = "Nearest Locations"
         return label
@@ -55,16 +59,19 @@ class MainScreenViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.text = "Nearest City's"
         return label
     }()
     
+    //MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+        locationManagerSetup()
         initDelegate()
         apiService()
     }
@@ -76,9 +83,20 @@ class MainScreenViewController: UIViewController {
         cityListCollectionView.contentSize = CGSize(width: cityListCollectionView.frame.width, height:  UIScreen.main.bounds.height)
     }
     
+    //MARK: Functions
+    
+    private func locationManagerSetup() {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     func initDelegate () {
-        locationManager.delegate = self
-        locationManager.requestLocation()
+        
         nearestLocationsCollectionView.delegate = nearestLocationCollectionView
         nearestLocationsCollectionView.dataSource = nearestLocationCollectionView
         
@@ -89,15 +107,32 @@ class MainScreenViewController: UIViewController {
         nearestCityCollectionView.delegate = self
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        self.urlLocation = "\(locValue.latitude),\(locValue.longitude)"
+        print(urlLocation!)
+    }
+    
     func apiService() {
-        service.fethAllPosts(onSuccess: { models in
-            self.nearestLocationCollectionView.update(items: models)
-            self.nearestCityCollectionView.update(items: models)
+        mainMenuViewModel.service(onSuccess: { [weak self]  models in
+            guard let self = self else { return }
+            self.allLocations = models
+            self.onlyCitys()
+            self.nearestCityCollectionView.update(items: self.allCitys)
             self.cityListCollectionView.reloadData()
+            self.nearestLocationCollectionView.update(items: models)
             self.nearestLocationsCollectionView.reloadData()
         }, onFail: { error in
             print(error ?? "")
-        }, latLong: urlLocation ?? "36.58718,36.17347")
+        }, url: Constants.locaionURL + Constants.latlongExtension + "\(urlLocation ?? "37.785834,-122.40641")")
+    }
+    
+    private func onlyCitys() {
+        for index in 0..<allLocations.count {
+            if allLocations[index].location_type == "City" {
+                self.allCitys.append(self.allLocations[index])
+            }
+        }
     }
     
     func setupUI() {
@@ -135,34 +170,7 @@ class MainScreenViewController: UIViewController {
 
 //MARK:  - CLLocationManagerDelegate
 
-extension MainScreenViewController: CLLocationManagerDelegate {
-    
-    func locationManager(
-        _ manager: CLLocationManager,
-        didChangeAuthorization status: CLAuthorizationStatus
-    ) {
-        // Handle changes if location permissions
-    }
-
-    func locationManager(
-        _ manager: CLLocationManager,
-        didFailWithError error: Error
-    ) {
-        // Handle failure to get a user’s location
-    }
-    
-    func locationManager(
-        _ manager: CLLocationManager,
-        didUpdateLocations locations: [CLLocation]
-    ) {
-        if let location = locations.first {
-           let location = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
-            urlLocation = location
-            print(urlLocation ?? "36.58718,36.17347")
-            // Handle location update
-        }
-    }
-}
+extension MainScreenViewController: CLLocationManagerDelegate {}
 
 //MARK:  - NearestLocationCollectionViewOutputProtocol
 
