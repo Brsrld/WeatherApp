@@ -70,6 +70,7 @@ class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        networkCheck()
         setupUI()
         locationManagerSetup()
         initDelegate()
@@ -84,6 +85,14 @@ class MainScreenViewController: UIViewController {
     }
     
     //MARK: Functions
+    
+    private func networkCheck() {
+        if NetworkMonitor.shared.isConnected {
+            print("Device has been connected to internet")
+        } else {
+            print("Device has not been connected to internet")
+        }
+    }
     
     private func locationManagerSetup() {
         locationManager.requestAlwaysAuthorization()
