@@ -76,9 +76,9 @@ class CityDetailViewController: UIViewController {
     
     private func networkCheck() {
         if NetworkMonitor.shared.isConnected {
-            print("Device has been connected to internet")
+            print("Device connected to internet")
         } else {
-            print("Device has not been connected to internet")
+            print("Device did not connected to internet")
         }
     }
     

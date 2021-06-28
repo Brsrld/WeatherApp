@@ -12,14 +12,22 @@ class NearestCitysCollectionViewCell: UICollectionViewCell {
     
     // MARK: View Properties
     
+    private var cityImage: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
     private var cityNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .white
+        label.backgroundColor = .systemBlue
         label.numberOfLines = 0
         return label
     }()
@@ -29,9 +37,9 @@ class NearestCitysCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .white
+        label.backgroundColor = .systemBlue
         label.numberOfLines = 0
         return label
     }()
@@ -49,11 +57,14 @@ class NearestCitysCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(cityNameLabel)
         contentView.addSubview(distanceLabel)
-        contentView.backgroundColor = .white
+        contentView.addSubview(cityImage)
         
-        contentView.frame = CGRect(x: 0, y: 10, width: contentView.frame.size.width, height: contentView.frame.size.height - 10)
-        cityNameLabel.frame = CGRect(x: 0, y:10, width: contentView.frame.size.width, height: 50)
-        distanceLabel.frame = CGRect(x: 0, y:60, width: contentView.frame.size.width, height: 50)
+        contentView.backgroundColor = .systemBlue
+        
+        contentView.frame = CGRect(x: 0, y: 10, width: contentView.frame.size.width, height: contentView.frame.size.height)
+        cityImage.frame = CGRect(x: 10, y:10, width: contentView.frame.size.width / 2, height: contentView.frame.size.height - 20)
+        cityNameLabel.frame = CGRect(x: cityImage.frame.size.width + 10, y:10, width: contentView.frame.size.width - cityImage.frame.size.width - 10, height: 50)
+        distanceLabel.frame = CGRect(x: cityImage.frame.size.width + 10, y:90, width: contentView.frame.size.width - cityImage.frame.size.width - 10, height: 50)
     }
     
     private func shadowForContentView() {
@@ -68,5 +79,6 @@ class NearestCitysCollectionViewCell: UICollectionViewCell {
     func configure (title: String, distance: Int, type:String) {
         cityNameLabel.text = title + " " + type
         distanceLabel.text = "Distance: \(distance/1000) km"
+        cityImage.image = UIImage(named: "city")
     }
 }

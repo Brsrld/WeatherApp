@@ -51,29 +51,26 @@ class CityDetailCollectionViewCell: UICollectionViewCell {
         return iv
     }()
     
-    
-    
     private var dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .white
+        label.backgroundColor = .systemBlue
         label.numberOfLines = 0
         return label
     }()
-    
     
     private var tempLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .white
+        label.backgroundColor = .systemBlue
         label.numberOfLines = 0
         return label
     }()
@@ -83,9 +80,9 @@ class CityDetailCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .white
+        label.backgroundColor = .systemBlue
         label.numberOfLines = 0
         return label
     }()
@@ -95,14 +92,13 @@ class CityDetailCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .white
+        label.backgroundColor = .systemBlue
         label.numberOfLines = 0
         return label
     }()
-    
-    
+        
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -124,19 +120,19 @@ class CityDetailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(windImage)
         contentView.addSubview(airPressureImage)
         contentView.addSubview(dateImage)
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemBlue
         
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height)
-        weatherImage.frame = CGRect(x: -10, y: 20, width: contentView.frame.size.width / 2.5, height: contentView.frame.size.height - 40)
-        tempImage.frame = CGRect(x: contentView.frame.size.width / 5 , y: 10, width: weatherImage.frame.width, height: 25)
-        windImage.frame = CGRect(x: contentView.frame.size.width / 5, y: 40, width: weatherImage.frame.width, height: 25)
-        airPressureImage.frame = CGRect(x: contentView.frame.size.width / 5, y: 70, width: weatherImage.frame.width, height: 25)
-        dateImage.frame = CGRect(x: contentView.frame.size.width / 5, y: 100, width: weatherImage.frame.width, height: 25)
+        weatherImage.frame = CGRect(x: 10, y: 20, width: contentView.frame.size.width / 2.5, height: contentView.frame.size.height - 40)
+        tempImage.frame = CGRect(x: contentView.frame.size.width / 3, y: 10, width: weatherImage.frame.width, height: 25)
+        windImage.frame = CGRect(x: contentView.frame.size.width / 3, y: 40, width: weatherImage.frame.width, height: 25)
+        airPressureImage.frame = CGRect(x: contentView.frame.size.width / 3, y: 70, width: weatherImage.frame.width, height: 25)
+        dateImage.frame = CGRect(x: contentView.frame.size.width / 3, y: 100, width: weatherImage.frame.width, height: 25)
         
-        tempLabel.frame = CGRect(x: contentView.frame.size.width / 2.3, y: 10, width: weatherImage.frame.width - 10, height: 20)
-        windLabel.frame = CGRect(x: contentView.frame.size.width / 2.3, y: 40, width: weatherImage.frame.width - 10, height: 20)
-        airPressureLabel.frame = CGRect(x: contentView.frame.size.width / 2.3, y: 70, width: weatherImage.frame.width - 10, height: 20)
-        dateLabel.frame = CGRect(x: contentView.frame.size.width / 2.3, y: contentView.frame.size.height - 25, width: weatherImage.frame.width - 10, height: 20)
+        tempLabel.frame = CGRect(x: contentView.frame.size.width / 1.7, y: 10, width: weatherImage.frame.width - 10, height: 20)
+        windLabel.frame = CGRect(x: contentView.frame.size.width / 1.7, y: 40, width: weatherImage.frame.width - 10, height: 20)
+        airPressureLabel.frame = CGRect(x: contentView.frame.size.width / 1.7, y: 70, width: weatherImage.frame.width - 10, height: 20)
+        dateLabel.frame = CGRect(x: contentView.frame.size.width / 1.7, y: contentView.frame.size.height - 25, width: weatherImage.frame.width - 10, height: 20)
     }
     
     private func shadowForContentView() {
