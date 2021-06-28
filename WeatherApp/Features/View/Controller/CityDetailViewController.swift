@@ -40,7 +40,7 @@ class CityDetailViewController: UIViewController {
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "Weekly Weather Forecast"
+        label.text = Constants.weeklyForecast
         return label
     }()
     
@@ -51,7 +51,7 @@ class CityDetailViewController: UIViewController {
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "Weekly Temp"
+        label.text = Constants.weeklyTemp
         return label
     }()
     
@@ -76,9 +76,9 @@ class CityDetailViewController: UIViewController {
     
     private func networkCheck() {
         if NetworkMonitor.shared.isConnected {
-            print("Device connected to internet")
+            print(Constants.internetConnected)
         } else {
-            print("Device did not connected to internet")
+            print(Constants.internetNotConnected)
         }
     }
     
@@ -97,7 +97,7 @@ class CityDetailViewController: UIViewController {
             self.cityDetailCollectionView.update(items: models)
             self.cityDetailsCollectionView.reloadData()
         } onFail: { error in
-            print(error ?? "")
+            print(error ?? Constants.nilValue)
         }
     }
     
@@ -131,7 +131,7 @@ class CityDetailViewController: UIViewController {
         view.backgroundColor = .white
         barChart.translatesAutoresizingMaskIntoConstraints = false
         navigationController?.navigationBar.prefersLargeTitles = false
-        title = "City Detail"
+        title = Constants.cityDetailViewControllerTitle
         
         weeklyTempLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         weeklyTempLabel.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 10).isActive = true
@@ -139,9 +139,9 @@ class CityDetailViewController: UIViewController {
         weeklyTempLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 20).isActive = true
         
         barChart.topAnchor.constraint(equalTo: weeklyTempLabel.bottomAnchor,constant: 10).isActive = true
-        barChart.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        barChart.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        barChart.heightAnchor.constraint(equalToConstant: view.frame.height/3).isActive = true
+        barChart.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 10).isActive = true
+        barChart.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -10).isActive = true
+        barChart.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
         
         weeklyWeatherForecastLabel.topAnchor.constraint(equalTo: barChart.bottomAnchor,constant: 10).isActive = true
         weeklyWeatherForecastLabel.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 10).isActive = true

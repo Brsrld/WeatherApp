@@ -50,7 +50,7 @@ class MainScreenViewController: UIViewController {
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "Nearest Locations"
+        label.text = Constants.nearestLocation
         return label
     }()
     
@@ -61,7 +61,7 @@ class MainScreenViewController: UIViewController {
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "Nearest City's"
+        label.text = Constants.nearestCitys
         return label
     }()
     
@@ -74,7 +74,10 @@ class MainScreenViewController: UIViewController {
         setupUI()
         locationManagerSetup()
         initDelegate()
-        apiService()
+        // eger kullanici izin vermemisse
+        // if adjkaad {
+        // apiService()
+        // }
     }
     
     override func viewDidLayoutSubviews() {
@@ -88,9 +91,9 @@ class MainScreenViewController: UIViewController {
     
     private func networkCheck() {
         if NetworkMonitor.shared.isConnected {
-            print("Device has been connected to internet")
+            print(Constants.internetConnected)
         } else {
-            print("Device has not been connected to internet")
+            print(Constants.internetNotConnected)
         }
     }
     
@@ -119,7 +122,7 @@ class MainScreenViewController: UIViewController {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         self.urlLocation = "\(locValue.latitude),\(locValue.longitude)"
-        print(urlLocation!)
+        apiService()
     }
     
     func apiService() {
@@ -132,13 +135,13 @@ class MainScreenViewController: UIViewController {
             self.nearestLocationCollectionView.update(items: models)
             self.nearestLocationsCollectionView.reloadData()
         }, onFail: { error in
-            print(error ?? "")
-        }, url: Constants.locaionURL + Constants.latlongExtension + "\(urlLocation ?? "37.785834,-122.40641")")
+            print(error ?? Constants.nilValue)
+        }, url: Constants.locaionURL + Constants.latlongExtension + "\(urlLocation ?? Constants.defaultLattLong)")
     }
     
     private func onlyCitys() {
         for index in 0..<allLocations.count {
-            if allLocations[index].location_type == "City" {
+            if allLocations[index].location_type == Constants.city {
                 self.allCitys.append(self.allLocations[index])
             }
         }
@@ -153,7 +156,7 @@ class MainScreenViewController: UIViewController {
         view.backgroundColor = .white
         
         navigationController?.navigationBar.prefersLargeTitles = false
-        title = "Main Screen"
+        title = Constants.mainScreenTitle
         
         nearestLocationsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         nearestLocationsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true

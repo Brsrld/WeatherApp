@@ -51,7 +51,7 @@ final class CityDetailCollectionView: NSObject{
         let adjustedWidth = collectionViewWidth - spaceBetweenCells - sectionInsets
         let width: CGFloat = floor(adjustedWidth / columns)
         let height: CGFloat = width / 2
-        return CGSize(width: width / 1.3, height: height / 1.5)
+        return CGSize(width: width , height: height)
     }
 }
 

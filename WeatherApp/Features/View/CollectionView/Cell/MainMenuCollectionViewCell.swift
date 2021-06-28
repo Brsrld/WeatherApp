@@ -55,16 +55,30 @@ class MainMenuCollectionViewCell: UICollectionViewCell {
     
     private func setupUI() {
         
+        contentView.frame = CGRect(x: 0, y: 10, width: contentView.frame.size.width, height: contentView.frame.size.height - 10)
+        
         contentView.addSubview(cityNameLabel)
         contentView.addSubview(distanceLabel)
         contentView.addSubview(locationImage)
         contentView.backgroundColor = .orange
         
-        contentView.frame = CGRect(x: 0, y: 10, width: contentView.frame.size.width, height: contentView.frame.size.height - 10)
-        
-        locationImage.frame = CGRect(x: 5, y:0, width: contentView.frame.size.width / 2.5 , height: contentView.frame.size.height)
-        cityNameLabel.frame = CGRect(x: locationImage.frame.size.width + 10, y:10, width: contentView.frame.size.width - locationImage.frame.size.width - 10, height: 50)
-        distanceLabel.frame = CGRect(x: locationImage.frame.size.width + 10, y:60, width: contentView.frame.size.width - locationImage.frame.size.width - 10, height: 50)
+        NSLayoutConstraint.activate([
+            
+            cityNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
+            cityNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            cityNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            cityNameLabel.heightAnchor.constraint(equalToConstant: contentView.frame.height / 5),
+            
+            locationImage.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor,constant: 5),
+            locationImage.leftAnchor.constraint(equalTo: contentView.leftAnchor,constant: 5),
+            locationImage.rightAnchor.constraint(equalTo: contentView.rightAnchor,constant: -75),
+            locationImage.heightAnchor.constraint(equalToConstant: contentView.frame.height / 1.7),
+            
+            distanceLabel.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor),
+            distanceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor,constant: 95),
+            distanceLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor,constant: -5),
+            distanceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
     
     private func shadowForContentView() {
@@ -77,13 +91,12 @@ class MainMenuCollectionViewCell: UICollectionViewCell {
     //MARK: Configure Cell
     
     func configure (title: String, distance: Int, type:String) {
-        cityNameLabel.text = title + " " + type
+        cityNameLabel.text = title + Constants.nilValue + type
         distanceLabel.text = "Distance: \(distance/1000) km"
-        if type == "City" {
-            locationImage.image = UIImage(named: "city")
+        if type == Constants.city {
+            locationImage.image = UIImage(named: Constants.city)
         } else {
-            locationImage.image = UIImage(named: "location")
+            locationImage.image = UIImage(named: Constants.location)
         }
-        
     }
 }
