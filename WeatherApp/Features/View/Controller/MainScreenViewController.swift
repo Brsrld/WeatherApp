@@ -166,7 +166,7 @@ class MainScreenViewController: UIViewController {
         nearestLocationsLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         nearestLocationsLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 15).isActive = true
         
-        nearestLocationsCollectionView.topAnchor.constraint(equalTo: nearestLocationsLabel.bottomAnchor).isActive = true
+        nearestLocationsCollectionView.topAnchor.constraint(equalTo: nearestLocationsLabel.bottomAnchor,constant: -20).isActive = true
         nearestLocationsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         nearestLocationsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         nearestLocationsCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 4.7).isActive = true
