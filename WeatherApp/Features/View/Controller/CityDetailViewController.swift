@@ -29,6 +29,8 @@ class CityDetailViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(CityDetailCollectionViewCell.self, forCellWithReuseIdentifier: Constants.cityDetailCollectionViewCellID)
         cv.backgroundColor = .systemBackground
+        cv.showsHorizontalScrollIndicator = false
+        cv.showsVerticalScrollIndicator = false
         cv.tag = 0
         return cv
     }()

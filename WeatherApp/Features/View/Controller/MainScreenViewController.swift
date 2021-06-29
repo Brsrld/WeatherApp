@@ -28,6 +28,8 @@ class MainScreenViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(MainMenuCollectionViewCell.self, forCellWithReuseIdentifier: Constants.mainMenuCollectionViewCellID)
         cv.backgroundColor = .systemBackground
+        cv.showsHorizontalScrollIndicator = false
+        cv.showsVerticalScrollIndicator = false
         cv.tag = 0
         return cv
     }()
@@ -39,6 +41,8 @@ class MainScreenViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(NearestCitysCollectionViewCell.self, forCellWithReuseIdentifier: Constants.nearestCitysCollectionViewCellID)
         cv.backgroundColor = .white
+        cv.showsHorizontalScrollIndicator = false
+        cv.showsVerticalScrollIndicator = false
         cv.tag = 0
         return cv
     }()
@@ -71,13 +75,9 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         
         networkCheck()
+        initDelegate()
         setupUI()
         locationManagerSetup()
-        initDelegate()
-        // eger kullanici izin vermemisse
-        // if adjkaad {
-        // apiService()
-        // }
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,11 +98,13 @@ class MainScreenViewController: UIViewController {
     }
     
     private func locationManagerSetup() {
+        
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
     }
@@ -122,6 +124,7 @@ class MainScreenViewController: UIViewController {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         self.urlLocation = "\(locValue.latitude),\(locValue.longitude)"
+        self.cityListCollectionView.reloadData()
         apiService()
     }
     
@@ -138,7 +141,7 @@ class MainScreenViewController: UIViewController {
             print(error ?? Constants.nilValue)
         }, url: Constants.locaionURL + Constants.latlongExtension + "\(urlLocation ?? Constants.defaultLattLong)")
     }
-    
+
     private func onlyCitys() {
         for index in 0..<allLocations.count {
             if allLocations[index].location_type == Constants.city {
@@ -166,7 +169,7 @@ class MainScreenViewController: UIViewController {
         nearestLocationsCollectionView.topAnchor.constraint(equalTo: nearestLocationsLabel.bottomAnchor).isActive = true
         nearestLocationsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         nearestLocationsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        nearestLocationsCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 6).isActive = true
+        nearestLocationsCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 4.7).isActive = true
         
         nearestCityLabel.topAnchor.constraint(equalTo: nearestLocationsCollectionView.bottomAnchor).isActive = true
         nearestCityLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true

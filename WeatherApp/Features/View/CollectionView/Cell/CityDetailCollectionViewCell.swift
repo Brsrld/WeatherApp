@@ -131,8 +131,8 @@ class CityDetailCollectionViewCell: UICollectionViewCell {
             
             weatherImage.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10),
             weatherImage.leftAnchor.constraint(equalTo: contentView.leftAnchor,constant: 20),
-            weatherImage.widthAnchor.constraint(equalToConstant: contentView.frame.width / 3),
-            weatherImage.heightAnchor.constraint(equalToConstant: contentView.frame.height - 20),
+            weatherImage.widthAnchor.constraint(equalToConstant: contentView.frame.width / 4),
+            weatherImage.heightAnchor.constraint(equalToConstant: contentView.frame.height - 30),
             
             tempImage.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10),
             tempImage.leftAnchor.constraint(equalTo: weatherImage.rightAnchor,constant: 50),

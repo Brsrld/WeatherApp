@@ -9,9 +9,10 @@ import Foundation
 import Network
 
 final class NetworkMonitor {
+    
+    //MARK: Variables
+    
     static let shared = NetworkMonitor()
-    
-    
     private let queue = DispatchQueue.global()
     private let monitor: NWPathMonitor
     
@@ -24,6 +25,8 @@ final class NetworkMonitor {
         case ethernet
         case unknown
     }
+    
+    //MARK: Functions
     
     private init() {
         monitor = NWPathMonitor()

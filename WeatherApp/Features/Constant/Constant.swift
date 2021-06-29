@@ -31,7 +31,7 @@ struct Constants {
     static let internetNotConnected = "Device did not connected to internet"
     static let internetConnected = "Device connected to internet"
     static let mainScreenTitle = "Main Screen"
-    static let defaultLattLong = "0,0"
+    static let defaultLattLong = "36.58718,36.17347"
     static let thermometer = "thermometer"
     static let wind = "wind"
     static let pressure = "pressure"
