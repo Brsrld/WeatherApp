@@ -34,7 +34,7 @@ final class NearestCityCollectionView: NSObject{
         var cell = UICollectionViewCell()
         
         if let dataCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.nearestCitysCollectionViewCellID, for: indexPath) as? NearestCitysCollectionViewCell {
-                dataCell.configure(title: items[indexPath.row].title, distance: items[indexPath.row].distance, type: items[indexPath.row].location_type)
+            dataCell.configure(title: items[indexPath.row].title, distance: items[indexPath.row].distance, type: items[indexPath.row].location_type)
                 cell = dataCell
         }
         return cell
