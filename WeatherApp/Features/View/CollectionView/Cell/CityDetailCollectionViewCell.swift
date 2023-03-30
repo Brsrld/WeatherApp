@@ -113,18 +113,9 @@ class CityDetailCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height)
-        
-        contentView.addSubview(weatherImage)
-        contentView.addSubview(tempImage)
-        contentView.addSubview(windImage)
-        contentView.addSubview(airPressureImage)
-        contentView.addSubview(dateImage)
-        
-        contentView.addSubview(tempLabel)
-        contentView.addSubview(windLabel)
-        contentView.addSubview(airPressureLabel)
-        contentView.addSubview(dateLabel)
-        
+    
+        contentView.addSubviews(weatherImage,tempImage,windImage,airPressureImage,dateImage)
+        contentView.addSubviews(tempLabel,windLabel,airPressureLabel,dateLabel)
         contentView.backgroundColor = .systemBlue
         
         NSLayoutConstraint.activate([

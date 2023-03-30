@@ -151,11 +151,8 @@ class MainScreenViewController: UIViewController {
     }
     
     func setupUI() {
-        
-        view.addSubview(nearestLocationsCollectionView)
-        view.addSubview(cityListCollectionView)
-        view.addSubview(nearestLocationsLabel)
-        view.addSubview(nearestCityLabel)
+ 
+        view.addSubviews(nearestLocationsCollectionView,cityListCollectionView,nearestLocationsLabel,nearestCityLabel)
         view.backgroundColor = .white
         
         navigationController?.navigationBar.prefersLargeTitles = false
