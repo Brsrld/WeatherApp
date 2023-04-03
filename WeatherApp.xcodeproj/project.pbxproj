@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		443F9D6929D64125006B2971 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443F9D6829D64125006B2971 /* UIView+Extension.swift */; };
 		55002E2A2689DC1600CC0868 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55002E292689DC1600CC0868 /* NetworkMonitor.swift */; };
 		552CE6902687625100209C27 /* NearestCitysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552CE68F2687625100209C27 /* NearestCitysCollectionViewCell.swift */; };
 		552CE69226876D7800209C27 /* NearestCityCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552CE69126876D7800209C27 /* NearestCityCollectionViewProvider.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		22609CBF0C6AEA12D257FF8B /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		443F9D6829D64125006B2971 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		55002E292689DC1600CC0868 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		552CE68F2687625100209C27 /* NearestCitysCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestCitysCollectionViewCell.swift; sourceTree = "<group>"; };
 		552CE69126876D7800209C27 /* NearestCityCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestCityCollectionViewProvider.swift; sourceTree = "<group>"; };
@@ -99,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		443F9D6729D64113006B2971 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				443F9D6829D64125006B2971 /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		552F0731268B958100615C9B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 		55410EF42685ED8900126C3E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				443F9D6729D64113006B2971 /* Extension */,
 				55410F0A2685EE0100126C3E /* Features */,
 				55410F092685EDF000126C3E /* Core */,
 				55410F032685ED8B00126C3E /* Info.plist */,
@@ -446,6 +457,7 @@
 				552CE69226876D7800209C27 /* NearestCityCollectionViewProvider.swift in Sources */,
 				552CE69426876E2300209C27 /* NearestLocationCollectionViewProvider.swift in Sources */,
 				552CE6902687625100209C27 /* NearestCitysCollectionViewCell.swift in Sources */,
+				443F9D6929D64125006B2971 /* UIView+Extension.swift in Sources */,
 				55410EF82685ED8900126C3E /* SceneDelegate.swift in Sources */,
 				55BAC5B52687C61F005571B4 /* CityDetailViewModel.swift in Sources */,
 				55BAC5B72687C987005571B4 /* CityDetailCollectionViewProvider.swift in Sources */,

@@ -54,11 +54,8 @@ class NearestCitysCollectionViewCell: UICollectionViewCell {
     // MARK: Functions
     
     private func setupUI() {
-        
-        contentView.addSubview(cityNameLabel)
-        contentView.addSubview(distanceLabel)
-        contentView.addSubview(cityImage)
-        
+     
+        contentView.addSubviews(cityNameLabel,distanceLabel,cityImage)
         contentView.backgroundColor = .systemBlue
         
         NSLayoutConstraint.activate([

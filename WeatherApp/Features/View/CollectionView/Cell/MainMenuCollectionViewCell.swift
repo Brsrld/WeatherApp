@@ -56,10 +56,8 @@ class MainMenuCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         
         contentView.frame = CGRect(x: 0, y: 10, width: contentView.frame.size.width, height: contentView.frame.size.height - 10)
-        
-        contentView.addSubview(cityNameLabel)
-        contentView.addSubview(distanceLabel)
-        contentView.addSubview(locationImage)
+      
+        contentView.addSubviews(cityNameLabel,distanceLabel,locationImage)
         contentView.backgroundColor = .orange
         
         NSLayoutConstraint.activate([

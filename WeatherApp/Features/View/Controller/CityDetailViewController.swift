@@ -126,10 +126,7 @@ class CityDetailViewController: UIViewController {
     
     private func setupUI() {
         
-        view.addSubview(cityDetailsCollectionView)
-        view.addSubview(barChart)
-        view.addSubview(weeklyTempLabel)
-        view.addSubview(weeklyWeatherForecastLabel)
+        view.addSubviews(cityDetailsCollectionView,barChart,weeklyTempLabel,weeklyWeatherForecastLabel)
         view.backgroundColor = .white
         barChart.translatesAutoresizingMaskIntoConstraints = false
         navigationController?.navigationBar.prefersLargeTitles = false
